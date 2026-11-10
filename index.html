@@ -1,13 +1,263 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Currículum de Mau, estudiante de Ingeniería en Sistemas Computacionales.">
+  <title>Mau | Currículum vitae</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --fondo: #f3f1eb;
+      --papel: #fffefa;
+      --tinta: #172b26;
+      --secundario: #4d6058;
+      --verde: #174f42;
+      --acento: #dbf694;
+      --linea: #dadfd6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--tinta);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    .cv {
+      width: min(100% - 3rem, 64rem);
+      margin: 2rem auto;
+      overflow: hidden;
+      background: var(--papel);
+      border: 1px solid var(--linea);
+      border-radius: 1.25rem;
+      box-shadow: 0 1.25rem 3rem #172b2610;
+    }
+
+    .barra {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .75rem;
+      padding: .85rem clamp(1.25rem, 5vw, 3rem);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .etiqueta {
+      margin: 0;
+      font-size: .73rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .enlace {
+      padding: .3rem .8rem;
+      border: 1px solid var(--linea);
+      border-radius: 99rem;
+      color: var(--verde);
+      font-size: .83rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .enlace:hover { background: #e9f2e5; }
+    .enlace:focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; }
+
+    .portada {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(2.4rem, 7vw, 4.75rem) clamp(1.25rem, 5vw, 3rem);
+      background: #122f28;
+      color: #fffefa;
+    }
+
+    .portada::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0 0 0 55%;
+      background: repeating-linear-gradient(135deg, transparent 0 18px, #dbf69420 18px 19px);
+      mask-image: linear-gradient(to right, transparent, #000);
+      content: "";
+    }
+
+    .portada .etiqueta {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      color: var(--acento);
+    }
+
+    .portada .etiqueta::before {
+      width: .5rem;
+      height: .5rem;
+      flex: 0 0 auto;
+      background: var(--acento);
+      border-radius: 50%;
+      content: "";
+    }
+
+    h1 {
+      margin: .45rem 0 .65rem;
+      font-family: Georgia, serif;
+      font-size: clamp(3.6rem, 10vw, 6.5rem);
+      font-weight: 400;
+      letter-spacing: -.065em;
+      line-height: .95;
+    }
+
+    .carrera {
+      max-width: 32rem;
+      margin: 0;
+      color: #e1ebdf;
+      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+    }
+
+    .contenido {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+    }
+
+    .principal,
+    .lateral {
+      padding: clamp(1.25rem, 5vw, 3rem);
+      overflow-wrap: anywhere;
+    }
+
+    .lateral {
+      background: #eef3eb;
+      border-left: 1px solid var(--linea);
+    }
+
+    section + section {
+      margin-top: 1.65rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--linea);
+    }
+
+    h2 {
+      margin: 0 0 .65rem;
+      color: var(--verde);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0 0 .15rem;
+      font-size: 1.03rem;
+      line-height: 1.4;
+    }
+
+    p { margin: 0; }
+    .detalle { color: var(--secundario); font-size: .9rem; }
+    .detalle + .detalle { margin-top: .3rem; }
+
+    .datos { margin: 0; }
+
+    .datos > div + div { margin-top: .7rem; }
+
+    dt {
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    dd { margin: 0; }
+
+    @media (max-width: 42rem) {
+      .cv { width: calc(100% - 1.5rem); margin: .75rem auto; }
+      .contenido { grid-template-columns: minmax(0, 1fr); }
+      .lateral { border-top: 1px solid var(--linea); border-left: 0; }
+    }
+
+    @page { margin: 14mm; }
+
+    @media print {
+      body, .portada, .lateral { background: #fff; }
+      .cv { width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+      .barra { padding: 0 0 .65rem; }
+      .enlace, .portada::after { display: none; }
+      .portada { padding: 1.2rem 0; border-bottom: 1px solid var(--linea); }
+      .portada, .portada .etiqueta, .carrera { color: var(--tinta); }
+      h1 { font-size: 3.75rem; }
+      .contenido { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); }
+      .principal { padding: 1.2rem 1.2rem 0 0; }
+      .lateral { padding: 1.2rem 0 0 1.2rem; border-top: 0; border-left: 1px solid var(--linea); }
+      section { break-inside: avoid; }
+    }
+  </style>
 </head>
 <body>
-    <p>Hola mundo</p>
-    <p>Estrucura basica</p>
-    <p>Nuevo parrafo </p>
+  <main class="cv">
+    <header>
+      <div class="barra">
+        <p class="etiqueta">Currículum vitae</p>
+        <a class="enlace" href="#contacto">Contacto</a>
+      </div>
+      <div class="portada">
+        <p class="etiqueta">Estudiante de ingeniería</p>
+        <h1>Mau</h1>
+        <p class="carrera">Ingeniería en Sistemas Computacionales</p>
+      </div>
+    </header>
+
+    <div class="contenido">
+      <div class="principal">
+        <section aria-labelledby="perfil">
+          <h2 id="perfil">Perfil</h2>
+          <p>Soy estudiante de Ingeniería en Sistemas Computacionales. [Agrega qué área de la carrera te interesa y qué te gustaría hacer en tus próximos proyectos.]</p>
+        </section>
+
+        <!-- Sustituye los textos entre corchetes por tus datos. -->
+        <section aria-labelledby="formacion">
+          <h2 id="formacion">Formación</h2>
+          <h3>[Nombre de tu universidad]</h3>
+          <p class="detalle">Ingeniería en Sistemas Computacionales</p>
+          <p class="detalle">[Año de inicio] – Actualidad</p>
+        </section>
+
+        <section aria-labelledby="proyectos">
+          <h2 id="proyectos">Proyectos académicos</h2>
+          <h3>[Nombre de un proyecto]</h3>
+          <p class="detalle">[Explica qué problema resolviste, cuál fue tu aportación y qué herramientas utilizaste.]</p>
+        </section>
+      </div>
+
+      <aside class="lateral" aria-label="Habilidades y contacto">
+        <section aria-labelledby="habilidades">
+          <h2 id="habilidades">Habilidades técnicas</h2>
+          <dl class="datos">
+            <div>
+              <dt>Lenguajes</dt>
+              <dd class="detalle">[Lenguajes que utilizas]</dd>
+            </div>
+            <div>
+              <dt>Herramientas</dt>
+              <dd class="detalle">[Herramientas que manejas]</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section id="contacto" aria-labelledby="titulo-contacto">
+          <h2 id="titulo-contacto">Contacto</h2>
+          <dl class="datos">
+            <div>
+              <dt>Correo</dt>
+              <dd class="detalle">[Tu correo]</dd>
+            </div>
+            <div>
+              <dt>GitHub o LinkedIn</dt>
+              <dd class="detalle">[Enlace a tu perfil]</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </main>
 </body>
 </html>
